@@ -1,0 +1,8 @@
+RewriteEngine On
+Options All -Indexes
+
+#url amigables
+RewriteRule ^([a-zA-Z0-9/ñÑ-]+)$ index.php?views=$1
+
+#error 404
+ErrorDocument 404 /Al_carbon_grill_B4/404.php
