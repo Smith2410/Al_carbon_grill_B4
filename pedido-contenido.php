@@ -13,8 +13,7 @@
         <tbody>
             <?php
             while($rw=mysqli_fetch_array($consultaC, MYSQLI_ASSOC))
-            { 
-                ?> 
+            {   ?> 
                 <tr>
                     <td scope="row"><?php echo $rw['Fecha']; ?></td>
                     <td>s/.<?php echo $rw['TotalPagar']; ?></td>
@@ -48,8 +47,7 @@
                     </td>
                 </tr>
                 <?php
-            }
-            ?>
+            } ?>
         </tbody>
     </table>
 </div>

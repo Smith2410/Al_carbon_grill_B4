@@ -21,6 +21,7 @@
                             <th scope="col">Apellidos</th>
                             <th scope="col">Teléfono</th>
                             <th scope="col">Dirección</th>
+                            <th scope="col">Actualizar</th>
                             <th scope="col">Eliminar</th>
                         </tr>
                     </thead>
@@ -40,6 +41,32 @@
                                     <td><?php echo $adm['Apellidos']; ?></td>
                                     <td><?php echo $adm['Telefono']; ?></td>
                                     <td><?php echo $adm['Direccion']; ?></td>
+                <td class="text-center">
+                    <form action="./process/up-administrador.php" method="POST" role="form" class="FormCatElec" data-form="update">
+                        <input type="hidden" name="admin-dni" value="<?php echo $adm['DNI']; ?>"required="" readonly>
+                        <input type="hidden" name="admin-nom" value="<?php echo $adm['Nombre']; ?>"required=""readonly>
+                        <input type="hidden" name="admin-ape" value="<?php echo $adm['Apellidos']; ?>"required=""readonly>
+                        <input type="hidden" name="admin-dir" value="<?php echo $adm['Direccion']; ?>"required=""readonly>
+                        <input type="hidden" name="admin-tel" value="<?php echo $adm['Telefono']; ?>"required=""readonly>
+                        <div class="input-group">
+                            <select name="admin-rol" required="" class="form-control">
+                                <?php 
+                                if ($adm['rol']==0) {
+                                    ?>
+                                    <option value="0">Administrador (Actual)</option>
+                                    <option value="1">Repartidor</option>
+                                    <?php
+                                }else{?>
+                                    <option value="1">Repartidor (Actual)</option>
+                                    <option value="0">Administrador</option>
+                                <?php } ?>
+                            </select>
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-outline-primary"><i class="icofont-save"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </td>
                                     <td class="text-center">
                                         <form action="process/del-administrador.php" method="POST" class="FormCatElec" data-form="delete">
                                             <input type="hidden" name="admin-code" value="<?php echo $adm['DNI']; ?>">

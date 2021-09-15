@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <h2>Lista de categorías</h2>
             <ol>
-                <li><a href="configAdmin.php?view=categoria">Nueva categoría</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#addCategory">Nueva categoría</a></li>
             </ol>
         </div>
     </div>

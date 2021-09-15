@@ -17,6 +17,7 @@
                 $filaU=mysqli_fetch_array($verAdmin, MYSQLI_ASSOC);
                 $_SESSION['claveAdmin']=$clave;
                 $_SESSION['adminID']=$filaU['DNI'];
+                $_SESSION['activo'] = true;
 
                 if ($filaU['rol'] == 0) {               
                     $_SESSION['userType']="Admin";
@@ -37,8 +38,9 @@
             if($UserC>0)
             {
                 $_SESSION['claveUser']=$clave;
-                $_SESSION['userType']="User";
                 $_SESSION['userDNI']=$filaU['DNI'];
+                $_SESSION['userType']="User";
+                $_SESSION['activo'] = true;
                 echo '<script> location.href="index.php"; </script>';
             }else{
                 echo '<p class="text-danger p-style">Error DNI y/o contraseña invalido</p>';

@@ -34,8 +34,14 @@
                         </tr>
                         <tr>
                             <td>Tipo de pago</td>
-                            <td><?php echo $order['NumeroDeposito']; ?></td>
+                            <td><?php echo $order['TipoPago']; ?></td>
                         </tr>
+                        <?php if ($order['TipoPago'] == "Transacción Bancaria"): ?>
+                            <tr>
+                                <td>Número de deposito</td>
+                                <td><?php echo $order['NumeroDeposito']; ?></td>
+                            </tr>
+                        <?php endif ?>
                         <tr>
                             <td>Fecha</td>
                             <td><?php echo $order['Fecha']; ?></td>
@@ -102,30 +108,32 @@
                     </div>
                 </form>
                 <br>
-                <form action="./process/up-repartidor-pedido.php" method="POST" class="FormCatElec" data-form="update">
-                    <input readonly="" type="hidden" value="<?php echo $order['NumPedido']; ?>" name="num-pedido">
-                    <div class="php-email-form">
-                        <div class="form-group">
-                            <label>Elija un repartidor</label>
-                            <select class="form-control" name="det-repar">
-                                <option value="">Seleccione un repartidor</option>
-                                <?php
-                                    $repartidors= ejecutarSQL::consultar("SELECT * FROM administrador WHERE rol = 1");
-                                    while($repar=mysqli_fetch_array($repartidors, MYSQLI_ASSOC)){
-                                        if($order['Repartidor_dni']==$repar['DNI']){
-                                        echo '<option selected="" value="'.$repar['DNI'].'">'.$repar['Nombre'].' '.$repar['Apellidos'].' (Actual)</option>';
-                                        }else{
-                                            echo '<option value="'.$repar['DNI'].'">'.$repar['Nombre']." ".$repar['Apellidos'].'</option>'; 
+                <?php if ($dataAdmin['rol']==0): ?>                            
+                    <form action="./process/up-repartidor-pedido.php" method="POST" class="FormCatElec" data-form="update">
+                        <input readonly="" type="hidden" value="<?php echo $order['NumPedido']; ?>" name="num-pedido">
+                        <div class="php-email-form">
+                            <div class="form-group">
+                                <label>Elija un repartidor</label>
+                                <select class="form-control" name="det-repar">
+                                    <option value="">Seleccione un repartidor</option>
+                                    <?php
+                                        $repartidors= ejecutarSQL::consultar("SELECT * FROM administrador WHERE rol = 1");
+                                        while($repar=mysqli_fetch_array($repartidors, MYSQLI_ASSOC)){
+                                            if($order['Repartidor_dni']==$repar['DNI']){
+                                            echo '<option selected="" value="'.$repar['DNI'].'">'.$repar['Nombre'].' '.$repar['Apellidos'].' (Actual)</option>';
+                                            }else{
+                                                echo '<option value="'.$repar['DNI'].'">'.$repar['Nombre']." ".$repar['Apellidos'].'</option>'; 
+                                            }
                                         }
-                                    }
-                                ?>
-                            </select>
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit">Asignar repartidor</button>
+                            </div>
                         </div>
-                        <div class="text-center">
-                            <button type="submit">Asignar repartidor</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                <?php endif ?>
             </div>
         </div>
     </div>

@@ -165,7 +165,6 @@
   padding-bottom: 0px;
 }
 .section-title-padding p{
-  padding-bottom: 0px;
   font-size: 30px;
 }
 .collapse-border{
@@ -175,3 +174,14 @@
   padding-bottom: 10px;
 }
 
+.padding-bottom{
+  padding-bottom: 0px;
+}
+
+.padding-top{
+  padding-top: 0px;
+}
+
+.link-pad{
+  padding: 0px;
+}

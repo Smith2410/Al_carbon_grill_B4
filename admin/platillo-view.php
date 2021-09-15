@@ -24,13 +24,8 @@
                     <div class="col-lg-6 col-md-6 form-group">
                         <input type="text" class="form-control" required="" name="prod-name" placeholder="Nombre del platillo">
                     </div>
-
-                    <div class="col-lg-3 col-md-3 form-group">
+                    <div class="col-lg-6 col-md-6 form-group">
                         <input type="text" class="form-control" required="" pattern="[0-9.]{1,20}" name="prod-price" placeholder="Precio del platillo">
-                    </div>
-
-                    <div class="col-lg-3 col-md-3 form-group">
-                        <input type="text" class="form-control" required="" maxlength="2" pattern="[0-9]{1,2}" name="prod-desc-price" value="0" placeholder="Descuento del platillo en (%)">
                     </div>
                 </div>
                 <div class="form-group">
@@ -38,7 +33,7 @@
                     <div class="validate"></div>
                 </div>
                 <div class="form-row">
-                    <div class="col-lg-6 col-md-6 form-group">
+                    <div class="col-lg-4 col-md-4 form-group">
                         <select class="form-control" name="prod-categoria">
                             <?php
                                 $categoriac= ejecutarSQL::consultar("SELECT * FROM categoria");
@@ -48,28 +43,13 @@
                             ?>
                         </select>
                     </div>
-                    <div class="col-lg-6 col-md-6 form-group">
-                        <select class="form-control" name="prod-codigo-chef">
-                            <?php
-                                $cocinerosc=  ejecutarSQL::consultar("SELECT * FROM cocinero");
-                                while($provc=mysqli_fetch_array($cocinerosc, MYSQLI_ASSOC)){
-                                    echo '<option value="'.$provc['DNI'].'">'.$provc['Nombre']." ".$provc['Apellidos'].'</option>';
-                                }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="col-lg-12 col-md-12 form-row">
-                        <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-8 col-md-8 form-row">
+                        <div class="col-lg-5 col-md-5 form-group">
                             <input class="form-control" type="file" name="img">
-                            <small>Formato de imágenes admitido png y jpg. Tamaño máximo 5MB.</small>
+                            <small>Formato .png y .jpg tamaño max 5MB.</small>
                         </div>
-                        <div class="col-lg-6 col-md-6 row">
-                            <div class="col-lg-3 text-center">
-                                <i class="icofont-info-circle" style="font-size: 80px;"></i>
-                            </div>
-                            <div class="col-lg-9">
-                                <p>Las imagenes se veran mejor si son de las mismas dimenciones. <small class="text-warning">Ej: Una imagen con las dimenciones de 500px * 500px.</small></p>
-                            </div>
+                        <div class="col-lg-7 col-md-7 form-group">
+                            <p>Las imagenes se veran mejor si son de las mismas dimenciones. <small class="text-warning">Ej: Una imagen con las dimenciones de 500px * 500px.</small></p>
                         </div>
                     </div>        
                 </div>

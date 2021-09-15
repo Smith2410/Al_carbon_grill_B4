@@ -20,7 +20,6 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Categoría</th>
                             <th scope="col">Precio</th>
-                            <th scope="col">Cocinero</th>
                             <th scope="col">Actualizar</th>
                             <th scope="col">Eliminar</th>
                         </tr>
@@ -57,13 +56,6 @@
                                 		?>
                                 	</td>
                                 	<td><?php echo $prod['Precio']; ?></td>
-                                    <td>
-                                        <?php
-                                            $chef=ejecutarSQL::consultar("SELECT Nombre,Apellidos FROM cocinero WHERE DNI='".$prod['Cocinero_dni']."'");
-                                            $datC=mysqli_fetch_array($chef, MYSQLI_ASSOC);
-                                            echo $datC['Nombre']." ".$datC['Apellidos'];
-                                        ?>
-                                    </td>
                                 	<td class="text-center">
                                 		<a href="configAdmin.php?view=platillo-info&code=<?php echo $prod['CodigoProd']; ?>" class="btn btn-outline-primary"><i class="icofont-edit"></i></a>
                                 	</td>

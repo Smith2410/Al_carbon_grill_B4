@@ -1,7 +1,7 @@
 <?php
-    include './library/configServer.php';
-    include './library/consulSQL.php';
-    include './include/header.php'; 
+    include 'library/configServer.php';
+    include 'library/consulSQL.php';
+    include 'include/header.php'; 
 ?>
 
 <section id="chefs" class="chefs chefs-padding">
@@ -39,21 +39,7 @@
                                 <div class="member-info">
                                     <div class="member-info-content">
                                         <h4><?php echo $prod['NombreProd']; ?></h4>
-                                        <?php
-                                        if ($prod['Descuento']>0) {
-                                            ?>
-                                            <span>
-                                                <?php
-                                                    $pref=number_format($prod['Precio']-($prod['Precio']*($prod['Descuento']/100)), 2, '.', '');
-                                                    echo $prod['Descuento']."% descuento: s/.".$pref; 
-                                                ?>
-                                            </span>
-                                            <?php 
-                                        }else{
-                                            ?>
-                                            <span>s/.<?php echo $prod['Precio']; ?></span>
-                                            <?php
-                                        } ?>
+                                        <span>s/.<?php echo $prod['Precio']; ?></span>
                                     </div>
                                     <div class="social">
                                         <a href="<?php echo SERVERURL; ?>detalle-platillo.php?CodigoProd=<?php echo $prod['CodigoProd']; ?>">
@@ -79,4 +65,4 @@
     } ?>
 </section>
 
-<?php include './include/footer.php'; ?>
+<?php include 'include/footer.php'; ?>

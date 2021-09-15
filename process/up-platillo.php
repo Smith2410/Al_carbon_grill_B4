@@ -7,9 +7,6 @@
     $catProdUp=consultasSQL::clean_string($_POST['prod-categoria']);
     $priceProdUp=consultasSQL::clean_string($_POST['prod-price']);
     $descripProdUp=consultasSQL::clean_string($_POST['prod-descrip']);
-    $proveProdUp=consultasSQL::clean_string($_POST['prod-codigo-chef']);
-    $descProdUp=consultasSQL::clean_string($_POST['prod-desc-price']);
-
     $imgName=$_FILES['img']['name'];
     $imgType=$_FILES['img']['type'];
     $imgSize=$_FILES['img']['size'];
@@ -46,7 +43,7 @@
         }
     }
 
-    if(consultasSQL::UpdateSQL("producto", "NombreProd='$nameProdUp',Categoria_id='$catProdUp',Precio='$priceProdUp',Descuento='$descProdUp',Descripcion='$descripProdUp',Cocinero_dni='$proveProdUp'", "CodigoProd='$codeOldProdUp'"))
+    if(consultasSQL::UpdateSQL("producto", "NombreProd='$nameProdUp',Categoria_id='$catProdUp',Precio='$priceProdUp',Descripcion='$descripProdUp'", "CodigoProd='$codeOldProdUp'"))
     {
        echo '<script>
             swal({
@@ -62,7 +59,7 @@
             },
             function(isConfirm) {
                 if (isConfirm) {
-                    location.reload();
+                    location.href="configAdmin.php?view=platillo-list";
                 } else {
                     location.reload();
                 }

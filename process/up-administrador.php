@@ -42,8 +42,8 @@
     {
         echo '<script>
             swal({
-                title: "Administrador actualizado",
-                text: "Los datos del administrador se actualizaron con éxito",
+                title: "Usuario actualizado",
+                text: "Los datos del usuario se actualizaron con éxito",
                 type: "success",
                 showCancelButton: true,
                 confirmButtonClass: "btn-danger",

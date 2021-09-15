@@ -19,17 +19,18 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Tipo pago</th>
                             <th scope="col">Fecha</th>
                             <th scope="col">Cliente</th>
                             <th scope="col">Total</th>
+                            <th scope="col">Pago</th>
                             <th scope="col">Estado</th>
                             <th scope="col">Envío</th>
-                            <th scope="col">Repartidor</th>
                             <th scope="col">Factura</th>
                             <th scope="col">Detalle</th>
                             <th scope="col">Actualizar</th>
-                            <th scope="col">Eliminar</th>
+                            <?php if ($dataAdmin['rol']==0): ?>
+                                <th scope="col">Eliminar</th>
+                            <?php endif ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,8 +43,12 @@
                             $regpagina = 10;
                             $inicio = ($pagina > 1) ? (($pagina * $regpagina) - $regpagina) : 0;
 
-                            $pedidos=mysqli_query($mysqli,"SELECT SQL_CALC_FOUND_ROWS * FROM venta LIMIT $inicio, $regpagina");
-
+                            if ($dataAdmin['rol']==0) {
+                                $pedidos=mysqli_query($mysqli,"SELECT SQL_CALC_FOUND_ROWS * FROM venta LIMIT $inicio, $regpagina");
+                            }else{
+                                $pedidos=mysqli_query($mysqli,"SELECT SQL_CALC_FOUND_ROWS * FROM venta WHERE Repartidor_dni = ".$_SESSION['adminID']." LIMIT $inicio, $regpagina");
+                            }
+                            
                             $totalregistros = mysqli_query($mysqli,"SELECT FOUND_ROWS()");
                             $totalregistros = mysqli_fetch_array($totalregistros, MYSQLI_ASSOC);
 

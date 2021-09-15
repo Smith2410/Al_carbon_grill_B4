@@ -1,6 +1,6 @@
 <?php
-    include './library/configServer.php';
-    include './library/consulSQL.php';
+    include 'library/configServer.php';
+    include 'library/consulSQL.php';
     include 'process/security-panel.php';
     include 'include/header.php';
 ?> 
@@ -35,29 +35,31 @@
                         <a class="nav-link active show" href="configAdmin.php">Administración</a>
                     </li>
                     <li class="nav-item">
-                        <a href="<?php echo SERVERURL; ?>configAdmin.php?view=platillo-list" class="nav-link">Platillos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?php echo SERVERURL; ?>configAdmin.php?view=categoria-list" class="nav-link">Categorías</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?php echo SERVERURL; ?>configAdmin.php?view=cocinero-list" class="nav-link">Cocineros</a>
-                    </li>
-                    <li class="nav-item">
                         <a href="<?php echo SERVERURL; ?>configAdmin.php?view=pedido" class="nav-link">Pedidos</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="<?php echo SERVERURL; ?>configAdmin.php?view=repartidor-list" class="nav-link">Repartidores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?php echo SERVERURL; ?>configAdmin.php?view=administrador-list" class="nav-link">Administradores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?php echo SERVERURL; ?>configAdmin.php?view=cliente-list" class="nav-link">Clientes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="<?php echo SERVERURL; ?>configAdmin.php?view=cuenta-banco" class="nav-link">Cuenta bancaria</a>
-                    </li>
+                    <?php 
+                    if ($dataAdmin['rol']==0)
+                    {   ?>
+                        <li class="nav-item">
+                            <a href="<?php echo SERVERURL; ?>configAdmin.php?view=platillo-list" class="nav-link">Platillos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo SERVERURL; ?>configAdmin.php?view=categoria-list" class="nav-link">Categorías</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo SERVERURL; ?>configAdmin.php?view=administrador-list" class="nav-link">Administradores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo SERVERURL; ?>configAdmin.php?view=repartidor-list" class="nav-link">Repartidores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo SERVERURL; ?>configAdmin.php?view=cliente-list" class="nav-link">Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo SERVERURL; ?>configAdmin.php?view=cuenta-banco" class="nav-link">Cuenta bancaria</a>
+                        </li>
+                        <?php 
+                    } ?>
                 </ul>
             </div>
 
@@ -70,28 +72,36 @@
                     <div class="card card-body card-dark">
                         <ul class="nav nav-tabs flex-column">
                             <li class="nav-item">
-                                <a href="<?php echo SERVERURL; ?>configAdmin.php?view=platillo-list" class="nav-link">Platillos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo SERVERURL; ?>configAdmin.php?view=categoria-list" class="nav-link">Categorías</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo SERVERURL; ?>configAdmin.php?view=cocinero-list" class="nav-link">Cocineros</a>
+                                <a class="nav-link active show" href="configAdmin.php">Administración</a>
                             </li>
                             <li class="nav-item">
                                 <a href="<?php echo SERVERURL; ?>configAdmin.php?view=pedido" class="nav-link">Pedidos</a>
                             </li>
+                            <?php 
+                            if ($dataAdmin['rol']==0)
+                            {   ?>
+                                <li class="nav-item">
+                                    <a href="<?php echo SERVERURL; ?>configAdmin.php?view=platillo-list" class="nav-link">Platillos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo SERVERURL; ?>configAdmin.php?view=categoria-list" class="nav-link">Categorías</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo SERVERURL; ?>configAdmin.php?view=administrador-list" class="nav-link">Administradores</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo SERVERURL; ?>configAdmin.php?view=repartidor-list" class="nav-link">Repartidores</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo SERVERURL; ?>configAdmin.php?view=cliente-list" class="nav-link">Clientes</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?php echo SERVERURL; ?>configAdmin.php?view=cuenta-banco" class="nav-link">Cuenta bancaria</a>
+                                </li>
+                                <?php 
+                            } ?>
                             <li class="nav-item">
-                                <a href="<?php echo SERVERURL; ?>configAdmin.php?view=repartidor-list" class="nav-link">Repartidores</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo SERVERURL; ?>configAdmin.php?view=administrador-list" class="nav-link">Administradores</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo SERVERURL; ?>configAdmin.php?view=cliente-list" class="nav-link">Clientes</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="<?php echo SERVERURL; ?>configAdmin.php?view=cuenta-banco" class="nav-link">Cuenta bancaria</a>
+                                <a href="<?php echo SERVERURL; ?>configAdmin.php?view=cuenta" class="nav-link">Mi cienta</a>
                             </li>
                         </ul>
                     </div>
@@ -105,8 +115,14 @@
                         <?php
                             $content=$_GET['view'];
 
-                            /** Lista blanca */
-                            $WhiteList=["platillo","platillo-list","platillo-info","cocinero","cocinero-list","cocinero-info","categoria","categoria-list","categoria-info","administrador","administrador-list","cuenta","pedido","pedido-detalle","pedido-pendiente","pedido-enviado","pedido-entregado","pedido-info","pedido-repartidor","cuenta-banco","cliente-list","repartidor","repartidor-list","repartidor-info"];
+                            if ($dataAdmin['rol']==0)
+                            {
+                                /** Lista blanca */
+                                $WhiteList=["platillo","platillo-list","platillo-info","categoria-list","categoria-info","administrador","administrador-list","administrador-info","cuenta","pedido","pedido-detalle","pedido-pendiente","pedido-enviado","pedido-entregado","pedido-info","pedido-repartidor","cuenta-banco","cliente-list","repartidor-list"];
+                            }else{
+                                /** Lista blanca **/
+                                $WhiteList=["pedido","pedido-detalle","pedido-info","pedido-pendiente","pedido-enviado","pedido-entregado","cuenta"];
+                            }
                             if(isset($content))
                             {
                                 if(in_array($content, $WhiteList) && is_file("./admin/".$content."-view.php"))
@@ -114,7 +130,7 @@
                                     include "./admin/".$content."-view.php";
                                 }else{
                                     ?>
-                                        <h3 class="text-center">Lo sentimos, la opción que ha seleccionado no se encuentra disponible</h3>
+                                    <h3 class="text-center">Lo sentimos, la opción que ha seleccionado no se encuentra disponible</h3>
                                     <?php
                                 }
                             }else{
@@ -128,58 +144,63 @@
 
                                             <div class="card card-dark col-lg-4 col-md-3">
                                                 <div class="card-body">
-                                                    <a href="<?php echo SERVERURL; ?>configAdmin.php?view=platillo-list">
-                                                        Platillos
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="card card-dark col-lg-3 col-md-3">
-                                                <div class="card-body">
-                                                    <a href="<?php echo SERVERURL; ?>configAdmin.php?view=categoria-list">
-                                                        Categorias
-                                                    </a>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="card card-dark col-lg-4 col-md-3">
-                                                <div class="card-body">
-                                                    <a href="<?php echo SERVERURL; ?>configAdmin.php?view=cocinero-list">
-                                                        Cocinero
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="card card-dark col-lg-4 col-md-3">
-                                                <div class="card-body">
                                                     <a href="<?php echo SERVERURL; ?>configAdmin.php?view=pedido">
                                                         Pedidos
                                                     </a>
                                                 </div>
                                             </div>
 
-                                            <div class="card card-dark col-lg-4 col-md-3">
-                                                <div class="card-body">
-                                                    <a href="<?php echo SERVERURL; ?>configAdmin.php?view=repartidor-list"
-                                                        >
-                                                        Repartidores
-                                                    </a>
+                                            <?php 
+                                            if ($dataAdmin['rol']==0)
+                                            {   ?>
+
+                                                <div class="card card-dark col-lg-4 col-md-3">
+                                                    <div class="card-body">
+                                                        <a href="<?php echo SERVERURL; ?>configAdmin.php?view=platillo-list">
+                                                            Platillos
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
+
+                                                <div class="card card-dark col-lg-3 col-md-3">
+                                                    <div class="card-body">
+                                                        <a href="<?php echo SERVERURL; ?>configAdmin.php?view=categoria-list">
+                                                            Categorias
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card card-dark col-lg-4 col-md-3">
+                                                    <div class="card-body">
+                                                        <a href="<?php echo SERVERURL; ?>configAdmin.php?view=administrador-list">
+                                                            Administradores
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card card-dark col-lg-4 col-md-3">
+                                                    <div class="card-body">
+                                                        <a href="<?php echo SERVERURL; ?>configAdmin.php?view=repartidor-list"
+                                                            >
+                                                            Repartidores
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="card card-dark col-lg-3 col-md-3">
+                                                    <div class="card-body">
+                                                        <a href="<?php echo SERVERURL; ?>configAdmin.php?view=cliente-list">
+                                                            Clientes
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <?php 
+                                            } ?>
 
                                             <div class="card card-dark col-lg-3 col-md-3">
                                                 <div class="card-body">
-                                                    <a href="<?php echo SERVERURL; ?>configAdmin.php?view=cliente-list">
-                                                        Clientes
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="card card-dark col-lg-4 col-md-3">
-                                                <div class="card-body">
-                                                    <a href="<?php echo SERVERURL; ?>configAdmin.php?view=administrador-list">
-                                                        Administradores
+                                                    <a href="<?php echo SERVERURL; ?>configAdmin.php?view=cuenta">
+                                                        Mi cuenta
                                                     </a>
                                                 </div>
                                             </div>

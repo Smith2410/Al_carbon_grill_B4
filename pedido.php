@@ -1,7 +1,6 @@
 <?php include 'include/header.php'; ?> 
 
 <section id="book-a-table" class="book-a-table book-a-table-padding">
-
     <!-- ======= Pago pendiente ======= --> 
     <div class="container">
         <div>
@@ -53,7 +52,7 @@
             <!-- ======= pedidos / pendientes / enviados / entregados ======= --> 
             <div id="specials" class="specials">
                 <div class="container" data-aos="fade-up">
-                    <div class="section-title">
+                    <div class="section-title section-title-padding">
                         <p>Mis pedidos</p>
                     </div>
                     <div class="row" data-aos="fade-up" data-aos-delay="100">
@@ -169,7 +168,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <?php 

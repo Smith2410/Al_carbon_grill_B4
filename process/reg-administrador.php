@@ -21,14 +21,15 @@
     $passAdminFinal=md5($passAdmin1);
 
     $verificar=ejecutarSQL::consultar("SELECT * FROM administrador WHERE DNI='".$dniAdmin."'");
+    
     if(mysqli_num_rows($verificar)<=0)
     {
         if(consultasSQL::InsertSQL("administrador", "DNI, Nombre, Apellidos, Telefono, Direccion, Clave, rol", "'$dniAdmin','$nomAdmin','$apeAdmin','$telAdmin','$dirAdmin','$passAdminFinal','$rolAdmin'"))
         {
             echo '<script>
                 swal({
-                    title: "Administrador registrado",
-                    text: "El administrador se registró con éxito",
+                    title: "Usuario registrado",
+                    text: "El usuario se registró con éxito",
                     type: "success",
                     showCancelButton: true,
                     confirmButtonClass: "btn-danger",

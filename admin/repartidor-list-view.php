@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <h2>Lista de repartidores</h2>
             <ol>
-                <li><a href="configAdmin.php?view=repartidor">Nuevo repartidor</a></li>
+                <li><a href="configAdmin.php?view=administrador">Nuevo repartidor</a></li>
             </ol>
         </div>
     </div>
@@ -41,11 +41,11 @@
                             <td><?php echo $repa['Telefono']; ?></td>
                             <td><?php echo $repa['Direccion']; ?></td>
                             <td class="text-center">
-                                <a href="configAdmin.php?view=repartidor-info&code=<?php echo $repa['DNI']; ?>" class="btn btn-outline-primary"><i class="icofont-edit"></i></a>
+                                <a href="configAdmin.php?view=administrador-info&code=<?php echo $repa['DNI']; ?>" class="btn btn-outline-primary"><i class="icofont-edit"></i></a>
                             </td>
                             <td class="text-center">
-                                <form action="process/del-repartidor.php" method="POST" class="FormCatElec" data-form="delete">
-                                    <input type="hidden" name="repar-dni" value="<?php echo $repa['DNI']; ?>">
+                                <form action="process/del-administrador.php" method="POST" class="FormCatElec" data-form="delete">
+                                    <input type="hidden" name="admin-code" value="<?php echo $repa['DNI']; ?>">
                                     <button type="submit" class="btn btn-outline-danger"><i class="icofont-trash"></i></button>    
                                 </form>
                             </td>

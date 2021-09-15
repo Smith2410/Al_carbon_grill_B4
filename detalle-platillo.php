@@ -1,7 +1,7 @@
 <?php
-    include './library/configServer.php';
-    include './library/consulSQL.php';
-    include './include/header.php';
+    include 'library/configServer.php';
+    include 'library/consulSQL.php';
+    include 'include/header.php';
 ?>
 
 <!-- ======= Informacion del Platillo ======= -->
@@ -9,7 +9,7 @@
     <div class="container" data-aos="fade-up">
         <?php 
             $CodigoProducto=consultasSQL::clean_string($_GET['CodigoProd']);
-            $productoinfo=  ejecutarSQL::consultar("SELECT producto.CodigoProd,producto.NombreProd,producto.Categoria_id,categoria.Categoria,producto.Precio,producto.Descuento,producto.Descripcion,producto.Imagen FROM categoria INNER JOIN producto ON producto.Categoria_id=categoria.id  WHERE CodigoProd='".$CodigoProducto."'");
+            $productoinfo=  ejecutarSQL::consultar("SELECT producto.CodigoProd,producto.NombreProd,producto.Categoria_id,categoria.Categoria,producto.Precio,producto.Descripcion,producto.Imagen FROM categoria INNER JOIN producto ON producto.Categoria_id=categoria.id  WHERE CodigoProd='".$CodigoProducto."'");
             while($fila=mysqli_fetch_array($productoinfo, MYSQLI_ASSOC))
             {
                 if($fila['Imagen']!="" && is_file("./assets/img/platillos/".$fila['Imagen']))
@@ -17,8 +17,7 @@
                     $imagenFile="assets/img/platillos/".$fila['Imagen']; 
                 }else{ 
                     $imagenFile="assets/img/platillos/default.png"; 
-                }
-                ?>
+                } ?>
                 <div class="row">
                     <div class="col-lg-6 col-md-6 order-1 order-lg-1" data-aos="zoom-in" data-aos-delay="100">
                         <div class="about-img">
@@ -28,11 +27,9 @@
                     <div class="col-lg-6 col-md-6 pt-4 pt-lg-0 order-2 order-lg-2 content">
                         <h3><?php echo $fila['NombreProd'] ?></h3>
                         <h2 class="font-italic">
-                            s/.<?php echo ''.number_format(($fila['Precio']-($fila['Precio']*($fila['Descuento']/100))), 2, '.', '').'';?>
+                            s/.<?php echo $fila['Precio'];?>
                         </h2>
-                        <p class="font-italic">
-                            <?php echo $fila['Descripcion'] ?>
-                        </p>
+                        <p class="font-italic"> <?php echo $fila['Descripcion'] ?> </p>
                         <?php
                             if($_SESSION['adminID']!="" || $_SESSION['userDNI']!="")
                             { ?>
@@ -70,7 +67,7 @@
 </section>
 
 <!-- ===== Mas platillos ===== -->
-<section class="chefs">
+<section class="chefs padding-top">
     <div class="container" data-aos="fade-up">
         <div class="section-title">
             <p>Mas platillos</p>
@@ -97,21 +94,7 @@
                                 <div class="member-info">
                                     <div class="member-info-content">
                                         <h4><?php echo $fila['NombreProd']; ?></h4>
-                                        <?php
-                                        if ($fila['Descuento']>0) {
-                                            ?>
-                                            <span>
-                                                <?php
-                                                    $pref=number_format($fila['Precio']-($fila['Precio']*($fila['Descuento']/100)), 2, '.', '');
-                                                    echo $fila['Descuento']."% descuento: s/.".$pref; 
-                                                ?>
-                                            </span>
-                                            <?php 
-                                        }else{
-                                            ?>
-                                            <span>s/.<?php echo $fila['Precio']; ?></span>
-                                            <?php
-                                        } ?>
+                                        <span>s/.<?php echo $fila['Precio']; ?></span>
                                     </div>
                                     <div class="social">
                                         <a href="<?php echo SERVERURL; ?>detalle-platillo.php?CodigoProd=<?php echo $fila['CodigoProd']; ?>"><i class="bi bi-plus"></i>&nbsp; Detalles</a>
@@ -127,4 +110,4 @@
     </div>
 </section>
 
-<?php include './include/footer.php'; ?>
+<?php include 'include/footer.php'; ?>

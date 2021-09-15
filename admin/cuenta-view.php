@@ -2,10 +2,6 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center">
             <h2>Actualizar mi cuenta</h2>
-            <ol>
-                <li><a href="configAdmin.php?view=administrador">Nuevo Administrador</a></li>
-                <li><a href="configAdmin.php?view=administrador-list">Lista de Administradores</a></li>
-            </ol>
         </div>
     </div>
 </div>

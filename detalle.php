@@ -1,8 +1,8 @@
 <?php
-    include './library/configServer.php';
-    include './library/consulSQL.php';
-    $volver = "pedido.php";
+    include 'library/configServer.php';
+    include 'library/consulSQL.php';
     include 'include/header.php';
+    $volver = "pedido.php";
 ?>
 <section id="book-a-table" class="book-a-table book-a-table-padding">
     <div class="text-center">

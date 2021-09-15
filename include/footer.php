@@ -49,57 +49,47 @@
                                     <i class="bx bx-chevron-right"></i>
                                     <a href="<?php echo SERVERURL; ?>platillos.php">Platillos</a>
                                 </li>
-                                <?php
-                                    if ($_SESSION['userType']=="Repartidor")
-                                    { ?>
-                                        <li>
-                                            <i class="bx bx-chevron-right"></i>
-                                            <a href="<?php echo SERVERURL; ?>configRepartidor.php">Administración</a>
-                                        </li>
-                                        <li>
-                                            <i class="bx bx-chevron-right"></i>
-                                            <a type="button" data-toggle="modal" data-target="#logout">Cerrar sesion</a>
-                                        </li>
-                                        <?php 
-                                    }
-                                    else if($_SESSION['userType']=="Admin")
-                                    { ?>
-                                        <li>
-                                            <i class="bx bx-chevron-right"></i>
-                                            <a href="<?php echo SERVERURL; ?>configAdmin.php">Administración</a>
-                                        </li>
-                                        <li>
-                                            <i class="bx bx-chevron-right"></i>
-                                            <a type="button" data-toggle="modal" data-target="#logout">Cerrar sesion</a>
-                                        </li>
-                                        <?php  
-                                    }else if($_SESSION['userType']=="User")
-                                    { ?>
+                                <?php 
+                                if (!empty($_SESSION['activo'])) {
+                                    ?>
+                                    <li>
+                                        <i class="bx bx-chevron-right"></i>
+                                        <a href="<?php echo SERVERURL; ?>carrito.php">Carrito</a>
+                                    </li>
+
+                                    <?php 
+                                    if ($_SESSION['userType']=="User") {
+                                        ?>
                                         <li>
                                             <i class="bx bx-chevron-right"></i>
                                             <a href="<?php echo SERVERURL; ?>pedido.php">Pedidos</a>
                                         </li>
                                         <li>
                                             <i class="bx bx-chevron-right"></i>
-                                            <a href="<?php echo SERVERURL; ?>carrito.php">Carrito</a>
-                                        </li>
-                                        <li>
-                                            <i class="bx bx-chevron-right"></i>
                                             <a href="<?php echo SERVERURL; ?>my-account.php">Mi cuenta</a>
-                                        </li>
-                                        <li>
-                                            <i class="bx bx-chevron-right"></i>
-                                            <a type="button" data-toggle="modal" data-target="#logout">Cerrar sesion</a>
                                         </li>
                                         <?php
                                     }else{
                                         ?>
                                         <li>
                                             <i class="bx bx-chevron-right"></i>
-                                            <a type="button" data-toggle="modal" data-target="#login">Iniciar sesión</a>
+                                            <a href="<?php echo SERVERURL; ?>configAdmin.php">Administración</a>
                                         </li>
                                         <?php
-                                    }
+                                    } ?>
+                                    <li>
+                                        <i class="bx bx-chevron-right"></i>
+                                        <a href="#" data-toggle="modal" data-target="#logout">Cerrar sesion</a>
+                                    </li>
+                                    <?php
+                                }else{
+                                    ?>
+                                    <li>
+                                        <i class="bx bx-chevron-right"></i>
+                                        <a href="#" data-toggle="modal" data-target="#login">Iniciar sesión</a>
+                                    </li>
+                                    <?php
+                                }
                                 ?>
                             </ul>
                         </div>
@@ -133,6 +123,5 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/mains.js"></script>
-
 </body>
 </html>

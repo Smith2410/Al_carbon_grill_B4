@@ -8,8 +8,8 @@
 	{
 	    echo '<script>
 		    swal({
-		      	title: "Administrador eliminado",
-		      	text: "El administrador se eliminó con éxito",
+		      	title: "Usuario eliminado",
+		      	text: "El usuario se eliminó con éxito",
 		      	type: "success",
 		      	showCancelButton: true,
 		      	confirmButtonClass: "btn-danger",

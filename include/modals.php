@@ -22,39 +22,31 @@
                     <br>
                     <li><a href="<?php echo SERVERURL; ?>">Inicio</a></li>
                     <li><a href="<?php echo SERVERURL; ?>platillos.php">Platillos</a></li>
-                    <?php
-                        if ($_SESSION['userType']=="Repartidor")
-                        {
-                            ?>
-                            <li><a href="<?php echo SERVERURL; ?>carrito.php">Carrito</a></li>
-                            <li><a href="<?php echo SERVERURL; ?>configRepartidor.php">Administración</a></li>
-                            <li><a data-toggle="modal" data-target="#logout">Cerrar sesion</a></li>
-                            <?php 
-                        }
-                        else if($_SESSION['userType']=="Admin")
-                        {
-                            ?>
-                            <li><a href="<?php echo SERVERURL; ?>carrito.php">Carrito</a></li>
-                            <li><a href="<?php echo SERVERURL; ?>configAdmin.php">Administración</a></li>
-                            <li><a data-toggle="modal" data-target="#logout">Cerrar sesion</a></li>
-                            <?php  
-                        }else if($_SESSION['userType']=="User")
-                        {
+                    <?php 
+                    if (!empty($_SESSION['activo'])) {
+                        ?>
+                        <li><a href="<?php echo SERVERURL; ?>carrito.php">Carrito</a></li>
+
+                        <?php 
+                        if ($_SESSION['userType']=="User") {
                             ?>
                             <li><a href="<?php echo SERVERURL; ?>pedido.php">Pedidos</a></li>
-                            <li><a href="<?php echo SERVERURL; ?>carrito.php">Carrito</a></li>
                             <li><a href="<?php echo SERVERURL; ?>my-account.php">Mi cuenta</a></li>
-                            <li><a data-toggle="modal" data-target="#logout">Cerrar sesion</a></li>
                             <?php
                         }else{
                             ?>
-                            <li>
-                                <a data-toggle="modal" data-target="#login">Iniciar sesión</a>
-                            </li><br>
+                            <li><a href="<?php echo SERVERURL; ?>configAdmin.php">Administración</a></li>
                             <?php
-                        }
+                        } ?>
+                        <li><a href="#" data-toggle="modal" data-target="#logout">Cerrar sesion</a></li>
+                        <?php
+                    }else{
+                        ?>
+                        <li><a href="#" data-toggle="modal" data-target="#login">Iniciar sesión</a></li>
+                        <li><a href="<?php echo SERVERURL; ?>registro.php">Registrate</a></li>
+                        <?php
+                    }
                     ?>
-                    
                 </ul>
             </div>
             <div class="modal-footer">
@@ -74,134 +66,113 @@
                 </h5>
             </div>
             <div class="modal-body">
-                <div class="container" data-aos="fade-up">
-                    <div class="tab-content">
-
-                        <!-- ===== Login ===== -->
-                        <div class="tab-pane active show" id="tab-1">
-                            <div class="section-title section-title-padding">
-                                <p>Inicia sesion</p>
+                <div id="specials" class="specials">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item">
+                                        <a class="nav-link active show" data-toggle="tab" href="#tab-1">Iniciar sesión</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#tab-2">Registrate</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#tab-3">Cambiar contraseña</a>
+                                    </li>
+                                </ul><br>
                             </div>
-                            <form action="<?php echo SERVERURL; ?>process/login.php" method="post" role="form" class="FormCatElec" data-form="login">
-                                <div class="form-row">
-                                    <div class="col-lg-6 col-md-6 form-group">
-                                        <input type="text" class="form-control" name="dni-login" required="" placeholder="Numero de DNI">
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 form-group">
-                                        <input type="password" class="form-control" name="clave-login" required="" placeholder="Contraseña">
-                                    </div>
-                                </div>
-                                <div class="ResFormL" style="width: 100%; text-align: center; margin: 0;"></div>
-                                <div class="text-center div-style">
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="optionsRadios1" name="optionsRadios" class="custom-control-input" value="option1" checked="">
-                                        <label class="custom-control-label text-warning" for="optionsRadios1">Cliente</label>
-                                    </div>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="optionsRadios2" name="optionsRadios" class="custom-control-input" value="option2">
-                                        <label class="custom-control-label text-secondary" for="optionsRadios2">Administrador</label>
-                                    </div>
-                                </div>
+                            <div class="col-lg-12 mt-4 mt-lg-0">
+                                <div class="tab-content">
+                                    <div class="tab-pane active show" id="tab-1">
+                                        <form action="<?php echo SERVERURL; ?>process/login.php" method="post" role="form" class="FormCatElec" data-form="login">
+                                            <div class="form-row">
+                                                <div class="col-lg-6 col-md-6 form-group">
+                                                    <input type="text" class="form-control" name="dni-login" required="" placeholder="Numero de DNI">
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 form-group">
+                                                    <input type="password" class="form-control" name="clave-login" required="" placeholder="Contraseña">
+                                                </div>
+                                            </div>
+                                            <div class="ResFormL" style="width: 100%; text-align: center; margin: 0;"></div>
+                                            <div class="text-center div-style">
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="optionsRadios1" name="optionsRadios" class="custom-control-input" value="option1" checked="">
+                                                    <label class="custom-control-label text-warning" for="optionsRadios1">Cliente</label>
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input type="radio" id="optionsRadios2" name="optionsRadios" class="custom-control-input" value="option2">
+                                                    <label class="custom-control-label text-secondary" for="optionsRadios2">Administrador</label>
+                                                </div>
+                                            </div>
 
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-outline-warning">Iniciar sesión</button>
-                                    <hr>
-                                    <ul class="nav nav-tabs flex-column">
-                                        <li class="nav-item">
-                                            <a data-toggle="tab" href="#tab-2">Registrate</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a data-toggle="tab" href="#tab-3">¿Olvidaste tu contraseña?</a>
-                                        </li>
-                                    </ul>
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-outline-warning">Iniciar sesión</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="tab-2">
+                                        <form class="FormCatElec" action="<?php echo SERVERURL; ?>process/reg-cliente.php" role="form" method="POST" data-form="save">
+                                            <div class="form-row">
+                                                <div class="col-lg-3 col-md-4 form-group">
+                                                    <input class="form-control" type="text" required name="clien-dni" pattern="[0-9]{1,15}" maxlength="9" minlength="8" placeholder="DNI">
+                                                </div>
+                                                <div class="col-lg-4 col-md-4 form-group">
+                                                    <input class="form-control" type="text" required name="clien-nom" pattern="[a-zA-Z ]{1,50}" maxlength="50" placeholder="Nombre">
+                                                </div>
+                                                <div class="col-lg-5 col-md-4 form-group">
+                                                    <input class="form-control" type="text" required name="clien-ape" pattern="[a-zA-Z ]{1,50}" maxlength="50" placeholder="Apellidos">
+                                                </div>
+                                                <div class="col-lg-7 col-md-8 form-group">
+                                                    <input class="form-control" type="text" required name="clien-dir" maxlength="100" placeholder="Direccion">
+                                                </div>
+                                                <div class="col-lg-5 col-md-4 form-group">
+                                                    <input class="form-control" type="tel" required name="clien-tel" maxlength="15" minlength="9" placeholder="Teléfono">
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 form-group">
+                                                    <input class="form-control" type="password" required name="clien-pass" maxlength="50" minlength="8" placeholder="Contraseña">
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 form-group">
+                                                    <input class="form-control" type="password" required name="clien-pass2" maxlength="50" minlength="8" placeholder=" Repita contraseña">
+                                                </div>
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-outline-warning">Registrarse</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane" id="tab-3">
+                                        <form class="FormCatElec" action="<?php echo SERVERURL; ?>process/recuperar-contrasena.php" role="form" method="POST" data-form="save">
+                                            <div class="form-row">
+                                                <div class="col-lg-6 col-md-6 form-group">
+                                                    <input class="form-control" type="text" required="" name="user-dni" placeholder="Número de DNI">
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 form-group">
+                                                    <input class="form-control" type="text" name="user-tel" required="" placeholder="Número de telefono">
+                                                </div>
+                                            </div>
+                                            <label>Nueva contraseña</label>
+                                            <div class="form-row">
+                                                <div class="col-lg-6 col-md-6 form-group">
+                                                    <input class="form-control" type="password" name="user-pass1" maxlength="50" minlength="8" placeholder="Contraseña">
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 form-group">
+                                                    <input class="form-control" type="password" name="user-pass2" maxlength="50" minlength="8" placeholder="Repita contraseña">
+                                                </div>
+                                            </div>
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-outline-warning">Cambiar contraseña</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <br>
                                 </div>
-                            </form>
-                        </div>
-
-                        <!-- ===== Registrate ===== -->
-                        <div class="tab-pane" id="tab-2">
-                            <div class="section-title section-title-padding">
-                                <p>Registrate</p>
-                            </div>
-                            <form class="FormCatElec" action="<?php echo SERVERURL; ?>process/reg-cliente.php" role="form" method="POST" data-form="save">
-                                <div class="form-row">
-                                    <div class="col-lg-3 col-md-4 form-group">
-                                        <input class="form-control" type="text" required name="clien-dni" pattern="[0-9]{1,15}" maxlength="9" minlength="8" placeholder="DNI">
-                                    </div>
-                                    <div class="col-lg-4 col-md-4 form-group">
-                                        <input class="form-control" type="text" required name="clien-nom" pattern="[a-zA-Z ]{1,50}" maxlength="50" placeholder="Nombre">
-                                    </div>
-                                    <div class="col-lg-5 col-md-4 form-group">
-                                        <input class="form-control" type="text" required name="clien-ape" pattern="[a-zA-Z ]{1,50}" maxlength="50" placeholder="Apellidos">
-                                    </div>
-                                    <div class="col-lg-7 col-md-8 form-group">
-                                        <input class="form-control" type="text" required name="clien-dir" maxlength="100" placeholder="Direccion">
-                                    </div>
-                                    <div class="col-lg-5 col-md-4 form-group">
-                                        <input class="form-control" type="tel" required name="clien-tel" maxlength="15" minlength="9" placeholder="Teléfono">
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 form-group">
-                                        <input class="form-control" type="password" required name="clien-pass" maxlength="50" minlength="8" placeholder="Contraseña">
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 form-group">
-                                        <input class="form-control" type="password" required name="clien-pass2" maxlength="50" minlength="8" placeholder=" Repita contraseña">
-                                    </div>
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-outline-warning">Registrarse</button>
-                                    <hr>
-                                    <ul class="nav nav-tabs flex-column">
-                                        <li class="nav-item">
-                                            <a data-toggle="tab" href="#tab-1">Iniciar sesión</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </form>
-                        </div>
-
-                        <!-- ===== Olvido contraseña ===== -->
-                        <div class="tab-pane" id="tab-3">
-                            <div class="row">
-                                <div class="section-title section-title-padding">
-                                    <p>Cambia tu contraseña</p>
-                                </div>
-                                <form class="FormCatElec" action="<?php echo SERVERURL; ?>process/recuperar-contrasena.php" role="form" method="POST" data-form="save">
-                                    <div class="form-row">
-                                        <div class="col-lg-6 col-md-6 form-group">
-                                            <input class="form-control" type="text" required="" name="user-dni" placeholder="Número de DNI">
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 form-group">
-                                            <input class="form-control" type="text" name="user-tel" required="" placeholder="Número de telefono">
-                                        </div>
-                                    </div>
-                                    <label>Nueva contraseña</label>
-                                    <div class="form-row">
-                                        <div class="col-lg-6 col-md-6 form-group">
-                                            <input class="form-control" type="password" name="user-pass1" maxlength="50" minlength="8" placeholder="Contraseña">
-                                        </div>
-                                        <div class="col-lg-6 col-md-6 form-group">
-                                            <input class="form-control" type="password" name="user-pass2" maxlength="50" minlength="8" placeholder="Repita contraseña">
-                                        </div>
-                                    </div>
-                                    <div class="text-center">
-                                        <button type="submit" class="btn btn-outline-warning">Cambiar contraseña</button>
-                                        <hr>
-                                        <ul class="nav nav-tabs flex-column">
-                                            <li class="nav-item">
-                                                <a data-toggle="tab" href="#tab-1">Iniciar sesión</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a data-toggle="tab" href="#tab-2">Registrate</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </form>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
+                
             <div class="modal-footer">
                 <button class="btn btn-danger" data-dismiss="modal" type="button">Cerrar</button>
             </div>
@@ -238,6 +209,8 @@
                                 <br>
                             </p>
                             <div class="form-group">
+                                <input class="form-control" type="hidden" name="TipoPago" readonly="" value="Transacción Bancaria">
+
                                 <input class="form-control" type="text" name="NumDepo" placeholder="Numero de deposito" maxlength="50" required="">
                             </div>
                             <div class="form-group">
@@ -298,7 +271,9 @@
                 </div>
                 <div class="modal-body">
                     <p>Usted pagara al momento de recivir su pedido.</p>
-                    <input type="hidden" name="NumDepo" value="Contra-entrega">
+
+                    <input class="form-control" type="hidden" name="TipoPago" readonly="" value="Contra-Entega">
+                    <input class="form-control" type="hidden" name="NumDepo" readonly="" value="0000000">
                     <div class="form-group">
                         <select class="form-control" name="tipo-envio" data-toggle="tooltip" data-placement="top" title="Elige El Tipo De Envio">
                             <option value="" disabled="" selected="">Selecciona el tipo de envio</option>
@@ -354,3 +329,31 @@
         </div>
     </div>
 </div>
+
+<!-- ========== Administración ========== -->
+
+<!-- ========== Categoria ========== -->
+<div class="modal fade" id="addCategory" tabindex="-1" aria-labelledby="categoriaLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content modal-dark">
+            <form action="process/reg-categoria.php" method="POST" class="FormCatElec" data-form="save">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="categoriaLabel">
+                        Nueva categoria
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="col-lg-12 col-md-12 form-group">
+                            <input class="form-control" type="text" name="categ-name" maxlength="30" required="" placeholder="Nombre de la categoría">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" data-dismiss="modal" type="button">No</button>
+                    <button class="btn btn-warning" type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>       

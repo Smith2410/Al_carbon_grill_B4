@@ -1,6 +1,6 @@
 <?php 
-    include './library/configServer.php';
-    include './library/consulSQL.php';
+    include 'library/configServer.php';
+    include 'library/consulSQL.php';
     include 'include/header.php';
 ?>
 
@@ -14,7 +14,7 @@
                     <?php
                         $checkAllCat=ejecutarSQL::consultar("SELECT * FROM categoria");
                         if (mysqli_num_rows($checkAllCat)>=1) 
-                        { ?>
+                        {   ?>
                             <!-- ======= Categorias ======= -->
                             <div class="col-lg-2 col-md-3 d-none d-lg-block d-md-block" data-aos="fade-up" data-aos-delay="100">
                                 <ul class="nav nav-tabs flex-column">
@@ -23,11 +23,10 @@
                                     </li>
                                     <?php 
                                         while($cate=mysqli_fetch_array($checkAllCat, MYSQLI_ASSOC))
-                                        {
-                                            ?>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="<?php echo SERVERURL; ?>platillos.php?categ=<?php echo $cate['id']; ?>"><?php echo $cate['Categoria']; ?></a>
-                                                </li>
+                                        {   ?>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="<?php echo SERVERURL; ?>platillos.php?categ=<?php echo $cate['id']; ?>"><?php echo $cate['Categoria']; ?></a>
+                                            </li>
                                             <?php 
                                         }
                                     ?>
@@ -36,7 +35,6 @@
                             <?php
                         }
                     ?>
-
                     <!-- ===== Menu lateral Movil ===== -->
                     <div class="container container-button d-lg-none d-md-none">
                         <button class="btn btn-outline-warning" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -54,11 +52,10 @@
                                             </li>
                                             <?php 
                                                 while($cate=mysqli_fetch_array($checkAllCat, MYSQLI_ASSOC))
-                                                {
-                                                    ?>
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" href="<?php echo SERVERURL; ?>platillos.php?categ=<?php echo $cate['id']; ?>"><?php echo $cate['Categoria']; ?></a>
-                                                        </li>
+                                                {   ?>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="<?php echo SERVERURL; ?>platillos.php?categ=<?php echo $cate['id']; ?>"><?php echo $cate['Categoria']; ?></a>
+                                                    </li>
                                                     <?php 
                                                 }
                                             ?>
@@ -69,7 +66,6 @@
                             }
                         ?>
                     </div>
-
                     <!-- ======= Platillos por categoria ======= -->
                     <div class="col-lg-10 col-md-9">
                         <?php
@@ -85,7 +81,7 @@
                                 $datCat=mysqli_fetch_array($selCat, MYSQLI_ASSOC);
 
                                 if(mysqli_num_rows($consultar_productos)>=1)
-                                { ?>
+                                {   ?>
                                     <h2 class="text-center"><?php echo $datCat['Categoria']; ?></h2>
                                     <div class="row">
                                         <?php 
@@ -96,8 +92,7 @@
                                                 $imagenFile="assets/img/platillos/".$prod['Imagen']; 
                                             }else{ 
                                                 $imagenFile="assets/img/platillos/default.png"; 
-                                            }
-                                            ?>
+                                            } ?>
                                             <div class="col-lg-3 col-md-4 col-6">
                                                 <div class="member" data-aos="zoom-in" data-aos-delay="100">
 
@@ -106,21 +101,7 @@
                                                     <div class="member-info">
                                                         <div class="member-info-content">
                                                             <h4><?php echo $prod['NombreProd']; ?></h4>
-                                                            <?php
-                                                            if ($prod['Descuento']>0) {
-                                                                ?>
-                                                                <span>
-                                                                    <?php
-                                                                        $pref=number_format($prod['Precio']-($prod['Precio']*($prod['Descuento']/100)), 2, '.', '');
-                                                                        echo $prod['Descuento']."% descuento: s/.".$pref; 
-                                                                    ?>
-                                                                </span>
-                                                                <?php 
-                                                            }else{
-                                                                ?>
-                                                                <span>s/.<?php echo $prod['Precio']; ?></span>
-                                                                <?php
-                                                            } ?>
+                                                            <span>s/.<?php echo $prod['Precio']; ?></span>
                                                         </div>
                                                         <div class="social">
                                                             <a href="<?php echo SERVERURL; ?>detalle-platillo.php?CodigoProd=<?php echo $prod['CodigoProd']; ?>">
@@ -166,21 +147,7 @@
                                                         <div class="member-info">
                                                             <div class="member-info-content">
                                                                 <h4><?php echo $fila['NombreProd']; ?></h4>
-                                                                <?php
-                                                                if ($fila['Descuento']>0) {
-                                                                    ?>
-                                                                    <span>
-                                                                        <?php
-                                                                            $pref=number_format($fila['Precio']-($fila['Precio']*($fila['Descuento']/100)), 2, '.', '');
-                                                                            echo $fila['Descuento']."% descuento: s/.".$pref; 
-                                                                        ?>
-                                                                    </span>
-                                                                    <?php 
-                                                                }else{
-                                                                    ?>
-                                                                    <span>s/.<?php echo $fila['Precio']; ?></span>
-                                                                    <?php
-                                                                } ?>
+                                                                <span>s/.<?php echo $fila['Precio']; ?></span>
                                                             </div>
                                                             <div class="social">
                                                                 <a href="<?php echo SERVERURL; ?>detalle-platillo.php?CodigoProd=<?php echo $fila['CodigoProd']; ?>">

@@ -13,7 +13,6 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">DNI</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Apellidos</th>
@@ -43,7 +42,6 @@
                             {
                                 ?>
                                 <tr>
-                                    <td><?php echo $cr; ?></td>
                                     <td><?php echo $adm['DNI']; ?></td>
                                     <td><?php echo $adm['Nombre']; ?></td>
                                     <td><?php echo $adm['Apellidos']; ?></td>

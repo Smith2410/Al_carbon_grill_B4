@@ -8,14 +8,12 @@
     $cateProd=consultasSQL::clean_string($_POST['prod-categoria']);
     $priceProd=consultasSQL::clean_string($_POST['prod-price']);
     $descripProd=consultasSQL::clean_string($_POST['prod-descrip']);
-    $codePProd=consultasSQL::clean_string($_POST['prod-codigo-chef']);
-    $descProd=consultasSQL::clean_string($_POST['prod-desc-price']);
     $imgName=$_FILES['img']['name'];
     $imgType=$_FILES['img']['type'];
     $imgSize=$_FILES['img']['size'];
     $imgMaxSize=5120;
 
-    if($codeProd!="" && $nameProd!="" && $cateProd!="" && $priceProd!="" && $codePProd!="")
+    if($codeProd!="" && $nameProd!="" && $cateProd!="" && $priceProd!="")
     {
         $verificar=  ejecutarSQL::consultar("SELECT * FROM producto WHERE CodigoProd='".$codeProd."'");
         $verificaltotal = mysqli_num_rows($verificar);
@@ -36,7 +34,7 @@
                     $imgFinalName=$codeProd.$imgEx;
                     if(move_uploaded_file($_FILES['img']['tmp_name'],"../assets/img/platillos/".$imgFinalName))
                     {
-                        if(consultasSQL::InsertSQL("producto", "CodigoProd, NombreProd, Categoria_id, Precio, Descuento, Descripcion, Cocinero_dni, Imagen", "'$codeProd','$nameProd','$cateProd','$priceProd', '$descProd', '$descripProd','$codePProd','$imgFinalName'"))
+                        if(consultasSQL::InsertSQL("producto", "CodigoProd, NombreProd, Categoria_id, Precio, Descripcion, Imagen", "'$codeProd','$nameProd','$cateProd','$priceProd', '$descripProd','$imgFinalName'"))
                         {
                             echo '<script>
                                 swal({
@@ -52,7 +50,7 @@
                                 },
                                 function(isConfirm) {
                                     if (isConfirm) {
-                                        location.reload();
+                                        location.href="configAdmin.php?view=platillo-list";
                                     } else {
                                         location.reload();
                                     }

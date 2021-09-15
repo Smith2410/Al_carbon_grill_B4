@@ -2,6 +2,7 @@
     session_start(); 
     include '../library/configServer.php';
     include '../library/consulSQL.php';
+    $tipopago=consultasSQL::clean_string($_POST['TipoPago']);
     $NumDepo=consultasSQL::clean_string($_POST['NumDepo']);
     $tipoenvio=consultasSQL::clean_string($_POST['tipo-envio']);
     $Cedclien=consultasSQL::clean_string($_POST['Cedclien']);
@@ -58,12 +59,12 @@
             foreach($_SESSION['carro'] as $codess){
                 $consulta=ejecutarSQL::consultar("SELECT * FROM producto WHERE CodigoProd='".$codess['producto']."'");
                 while($fila = mysqli_fetch_array($consulta, MYSQLI_ASSOC)) {
-                    $tp=number_format($fila['Precio']-($fila['Precio']*($fila['Descuento']/100)), 2, '.', '');
+                    $tp = $fila['Precio'];
                     $suma += $tp*$codess['cantidad'];
                 }
                 mysqli_free_result($consulta);
             }
-            if(consultasSQL::InsertSQL("venta", "Fecha, Cliente_dni, TotalPagar, Estado, NumeroDeposito, TipoEnvio, Adjunto, DirRef", "'".date('d-m-Y')."','$Cedclien','$suma','$StatusV','$NumDepo','$tipoenvio','$comprobanteF','$DirRef'"))
+            if(consultasSQL::InsertSQL("venta", "Fecha, Cliente_dni, TotalPagar, Estado, TipoPago, NumeroDeposito, TipoEnvio, Adjunto, DirRef", "'".date('d-m-Y')."','$Cedclien','$suma','$StatusV','$tipopago','$NumDepo','$tipoenvio','$comprobanteF','$DirRef'"))
             {
 
                 /*recuperando el número del pedido actual*/
@@ -75,7 +76,7 @@
                 foreach($_SESSION['carro'] as $carro){
                 		$preP=ejecutarSQL::consultar("SELECT * FROM producto WHERE CodigoProd='".$carro['producto']."'");
                 		$filaP=mysqli_fetch_array($preP, MYSQLI_ASSOC);
-                    $pref=number_format($filaP['Precio']-($filaP['Precio']*($filaP['Descuento']/100)), 2, '.', '');
+                    $pref=number_format($filaP['Precio']);
                     	consultasSQL::InsertSQL("detalle", "NumPedido, CodigoProd, CantidadProductos, PrecioProd", "'$Numpedido', '".$carro['producto']."', '".$carro['cantidad']."', '$pref'");
                     	mysqli_free_result($preP);
                 }

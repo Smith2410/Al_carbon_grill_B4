@@ -65,8 +65,14 @@
                         </tr>
                         <tr>
                             <td>Tipo de pago</td>
-                            <td><?php echo $ventaInf['NumeroDeposito']; ?></td>
+                            <td><?php echo $ventaInf['TipoPago']; ?></td>
                         </tr>
+                        <?php if ($ventaInf['TipoPago'] == "Transacción Bancaria"): ?>
+                            <tr>
+                                <td>Número de deposito</td>
+                                <td><?php echo $ventaInf['NumeroDeposito']; ?></td>
+                            </tr>
+                        <?php endif ?>
                         <tr>
                             <td>Tipo de envio</td>
                             <td><?php echo $ventaInf['TipoEnvio']; ?></td>

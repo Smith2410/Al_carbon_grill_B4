@@ -20,7 +20,7 @@
             },
             function(isConfirm) {
                 if (isConfirm) {
-                    location.reload();
+                    location.href="configAdmin.php?view=categoria-list";
                 } else {
                     location.reload();
                 }

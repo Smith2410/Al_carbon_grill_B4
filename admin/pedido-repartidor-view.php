@@ -30,8 +30,14 @@
                         </tr>
                         <tr>
                             <td>Tipo de pago</td>
-                            <td><?php echo $order['NumeroDeposito']; ?></td>
+                            <td><?php echo $order['TipoPago']; ?></td>
                         </tr>
+                        <?php if ($order['TipoPago'] == "Transacción Bancaria"): ?>
+                            <tr>
+                                <td>Número de deposito</td>
+                                <td><?php echo $order['NumeroDeposito']; ?></td>
+                            </tr>
+                        <?php endif ?>
                         <tr>
                             <td>Fecha</td>
                             <td><?php echo $order['Fecha']; ?></td>
