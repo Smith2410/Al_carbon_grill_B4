@@ -101,7 +101,7 @@
                                 <?php 
                             } ?>
                             <li class="nav-item">
-                                <a href="<?php echo SERVERURL; ?>configAdmin.php?view=cuenta" class="nav-link">Mi cienta</a>
+                                <a href="<?php echo SERVERURL; ?>configAdmin.php?view=cuenta" class="nav-link">Mi cuenta</a>
                             </li>
                         </ul>
                     </div>

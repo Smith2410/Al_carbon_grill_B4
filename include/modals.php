@@ -20,30 +20,29 @@
                         </form>
                     </li>
                     <br>
-                    <li><a href="<?php echo SERVERURL; ?>">Inicio</a></li>
-                    <li><a href="<?php echo SERVERURL; ?>platillos.php">Platillos</a></li>
+                    <li class="li-padding"><a href="<?php echo SERVERURL; ?>">Inicio</a></li>
+                    <li class="li-padding"><a href="<?php echo SERVERURL; ?>platillos.php">Platillos</a></li>
                     <?php 
                     if (!empty($_SESSION['activo'])) {
                         ?>
-                        <li><a href="<?php echo SERVERURL; ?>carrito.php">Carrito</a></li>
+                        <li class="li-padding"><a href="<?php echo SERVERURL; ?>carrito.php">Carrito</a></li>
 
                         <?php 
                         if ($_SESSION['userType']=="User") {
                             ?>
-                            <li><a href="<?php echo SERVERURL; ?>pedido.php">Pedidos</a></li>
-                            <li><a href="<?php echo SERVERURL; ?>my-account.php">Mi cuenta</a></li>
+                            <li class="li-padding"><a href="<?php echo SERVERURL; ?>pedido.php">Pedidos</a></li>
+                            <li class="li-padding"><a href="<?php echo SERVERURL; ?>my-account.php">Mi cuenta</a></li>
                             <?php
                         }else{
                             ?>
-                            <li><a href="<?php echo SERVERURL; ?>configAdmin.php">Administración</a></li>
+                            <li class="li-padding"><a href="<?php echo SERVERURL; ?>configAdmin.php">Administración</a></li>
                             <?php
                         } ?>
-                        <li><a href="#" data-toggle="modal" data-target="#logout">Cerrar sesion</a></li>
+                        <li class="li-padding"><a href="#" data-toggle="modal" data-target="#logout">Cerrar sesion</a></li>
                         <?php
                     }else{
                         ?>
-                        <li><a href="#" data-toggle="modal" data-target="#login">Iniciar sesión</a></li>
-                        <li><a href="<?php echo SERVERURL; ?>registro.php">Registrate</a></li>
+                        <li class="li-padding"><a href="#" data-toggle="modal" data-target="#login">Iniciar sesión</a></li>
                         <?php
                     }
                     ?>
